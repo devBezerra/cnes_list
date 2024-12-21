@@ -8,6 +8,7 @@ import { ApiFindAllResponse } from './interfaces/find-all-response.interface';
 })
 export class CnesService {
   private apiUrl = 'https://apidadosabertos.saude.gov.br/cnes/estabelecimentos';
+  private cepApiUrl = 'https://viacep.com.br/ws'
 
   constructor(private http: HttpClient) {}
 
@@ -21,5 +22,9 @@ export class CnesService {
 
   findOneByCode(code: number): Observable<Object> {
     return this.http.get(`${this.apiUrl}/${code}`)
+  }
+
+  findCEP(cep: number): any {
+    return this.http.get(`${this.cepApiUrl}/${cep}/json/`)
   }
 }

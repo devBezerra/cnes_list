@@ -6,9 +6,14 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { CnesFormSkeletonComponent } from '../cnes-form-skeleton/cnes-form-skeleton.component';
-import { CnesLocationComponent } from "../cnes-location/cnes-location.component";
+import { CnesLocationComponent } from '../cnes-location/cnes-location.component';
+import { InputNumber } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-cnes-form',
@@ -19,8 +24,9 @@ import { CnesLocationComponent } from "../cnes-location/cnes-location.component"
     ReactiveFormsModule,
     CardModule,
     CnesFormSkeletonComponent,
-    CnesLocationComponent
-],
+    CnesLocationComponent,
+    InputNumber
+  ],
   templateUrl: './cnes-form.component.html',
   styleUrl: './cnes-form.component.scss',
 })
@@ -31,15 +37,18 @@ export class CnesFormComponent implements OnInit {
   disabled: boolean = true;
 
   public form: FormGroup = new FormGroup({
-    codigo_cnes: new FormControl(''),
-    nome_razao_social: new FormControl(''),
-    nome_fantasia: new FormControl(''),
-    numero_cnpj: new FormControl(''),
-    numero_telefone_estabelecimento: new FormControl(''),
-    endereco_email_estabelecimento: new FormControl(''),
-    codigo_estabelecimento_saude: new FormControl(''),
-    descricao_turno_atendimento: new FormControl(''),
-    endereco_estabelecimento: new FormControl(''),
+    codigo_cnes: new FormControl(),
+    nome_razao_social: new FormControl(),
+    nome_fantasia: new FormControl(),
+    numero_cnpj: new FormControl(),
+    numero_telefone_estabelecimento: new FormControl(),
+    endereco_email_estabelecimento: new FormControl(),
+    codigo_estabelecimento_saude: new FormControl(),
+    descricao_turno_atendimento: new FormControl(),
+    codigo_cep_estabelecimento: new FormControl(),
+    endereco_estabelecimento: new FormControl(),
+    numero_estabelecimento: new FormControl(),
+    bairro_estabelecimento: new FormControl(),
   });
 
   constructor(
@@ -58,11 +67,29 @@ export class CnesFormComponent implements OnInit {
           this.form.disable();
           this.loading = false;
         });
+      } else {
+        this.loading = false;
       }
     });
   }
 
   onSubmit() {}
+
+  checkLength() {
+    if(this.form.get('codigo_cep_estabelecimento')?.value.length === 8) {
+      this.searchCep()
+    }
+  }
+
+  searchCep() {
+    const cep = this.form.get('codigo_cep_estabelecimento')?.value;
+    if (cep) {
+      this.service.findCEP(cep).subscribe((res: any) => {
+        this.form.get('bairro_estabelecimento')?.setValue(res.bairro);
+        this.form.get('endereco_estabelecimento')?.setValue(res.logradouro);
+      });
+    }
+  }
 
   back() {
     this.router.navigateByUrl('');

@@ -5,3 +5,10 @@
 .establisment-item:hover {
     background-color: #eee !important;
 }
+
+.new-button {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    margin-right: 100px;
+}
