@@ -1,5 +1,5 @@
 @if(loading) {
-  <app-cnes-form-skeleton />
+<app-cnes-form-skeleton />
 } @else {
 <div class="form-container">
   <p-card class="form-card" [header]="this.code ? 'Detalhes' : 'Cadastrar'">
@@ -66,7 +66,7 @@
         />
       </div>
       <div style="display: flex; gap: 2rem">
-        <div class="input-container" style="width: 100%;">
+        <div class="input-container" style="width: 100%">
           <label for="endereco_email_estabelecimento">Email</label>
           <input
             class="input"
@@ -125,6 +125,11 @@
         }
       </div>
     </form>
+    <app-cnes-location
+      [name]="establishment?.nome_fantasia!"
+      [latitude]="establishment?.latitude_estabelecimento_decimo_grau!"
+      [longitude]="establishment?.longitude_estabelecimento_decimo_grau!"
+    />
   </p-card>
 </div>
 }

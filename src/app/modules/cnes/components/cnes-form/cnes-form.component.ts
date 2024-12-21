@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CnesFormSkeletonComponent } from '../cnes-form-skeleton/cnes-form-skeleton.component';
+import { CnesLocationComponent } from "../cnes-location/cnes-location.component";
 
 @Component({
   selector: 'app-cnes-form',
@@ -18,7 +19,8 @@ import { CnesFormSkeletonComponent } from '../cnes-form-skeleton/cnes-form-skele
     ReactiveFormsModule,
     CardModule,
     CnesFormSkeletonComponent,
-  ],
+    CnesLocationComponent
+],
   templateUrl: './cnes-form.component.html',
   styleUrl: './cnes-form.component.scss',
 })
