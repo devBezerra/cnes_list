@@ -12,10 +12,6 @@ const routes: Routes = [
     path: 'estabelecimento/:code',
     component: CnesFormComponent,
   },
-  {
-    path: '*',
-    component: CnesTableComponent,
-  },   
 ];
 
 @NgModule({
