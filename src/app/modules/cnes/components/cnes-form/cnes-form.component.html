@@ -1,0 +1,130 @@
+@if(loading) {
+  <app-cnes-form-skeleton />
+} @else {
+<div class="form-container">
+  <p-card class="form-card" [header]="this.code ? 'Detalhes' : 'Cadastrar'">
+    <form [formGroup]="form" class="form">
+      <div style="display: flex; gap: 8rem">
+        <div class="input-container">
+          <label for="codigo_cnes">Código CNES</label>
+          <input
+            class="input"
+            pInputText
+            formControlName="codigo_cnes"
+            placeholder="Código CNES"
+            class="flex-auto"
+            autocomplete="off"
+            [disabled]="true"
+          />
+        </div>
+        <div class="input-container">
+          <label for="numero_cnpj">CNPJ</label>
+          <input
+            class="input"
+            pInputText
+            formControlName="numero_cnpj"
+            placeholder="CNPJ"
+            class="flex-auto"
+            autocomplete="off"
+          />
+        </div>
+        <div class="input-container">
+          <label for="codigo_estabelecimento_saude"
+            >Código de Saúde do Estabelecimento</label
+          >
+          <input
+            class="input"
+            pInputText
+            formControlName="codigo_estabelecimento_saude"
+            placeholder="Código de Saúde do Estabelecimento "
+            class="flex-auto"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="nome_razao_social">Razão Social</label>
+        <input
+          class="input"
+          pInputText
+          [disabled]="true"
+          formControlName="nome_razao_social"
+          placeholder="Razão Social"
+          class="flex-auto"
+          autocomplete="off"
+        />
+      </div>
+      <div class="input-container">
+        <label for="nome_fantasia">Nome Fantasia</label>
+        <input
+          class="input"
+          pInputText
+          formControlName="nome_fantasia"
+          placeholder="Nome Fantasia"
+          class="flex-auto"
+          autocomplete="off"
+        />
+      </div>
+      <div style="display: flex; gap: 2rem">
+        <div class="input-container" style="width: 100%;">
+          <label for="endereco_email_estabelecimento">Email</label>
+          <input
+            class="input"
+            pInputText
+            formControlName="endereco_email_estabelecimento"
+            placeholder="Email"
+            class="flex-auto"
+            autocomplete="off"
+          />
+        </div>
+        <div class="input-container">
+          <label for="numero_telefone_estabelecimento">Telefone</label>
+          <input
+            class="input"
+            pInputText
+            formControlName="numero_telefone_estabelecimento"
+            placeholder="Telefone"
+            class="flex-auto"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="descricao_turno_atendimento">Descrição do Turno</label>
+        <input
+          class="input"
+          pInputText
+          formControlName="descricao_turno_atendimento"
+          placeholder="Turno de atendimento"
+          class="flex-auto"
+          autocomplete="off"
+        />
+      </div>
+      <div class="input-container">
+        <label for="endereco_estabelecimento">Endereço</label>
+        <input
+          class="input"
+          pInputText
+          formControlName="endereco_estabelecimento"
+          placeholder="Endereço"
+          class="flex-auto"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="buttons">
+        <p-button
+          class="button"
+          label="Voltar"
+          severity="secondary"
+          (onClick)="back()"
+        />
+
+        @if(!this.code) {
+        <p-button label="Enviar" (onClick)="onSubmit()" />
+        }
+      </div>
+    </form>
+  </p-card>
+</div>
+}
