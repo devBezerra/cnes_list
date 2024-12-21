@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CnesTableComponent } from './components/cnes-table/cnes-table.component';
-import { CnesDetailsComponent } from './components/cnes-details/cnes-details.component';
+import { CnesFormComponent } from './components/cnes-form/cnes-form.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'estabelecimento/:code',
-    component: CnesDetailsComponent,
+    component: CnesFormComponent,
   },   
 ];
 

@@ -1,0 +1,15 @@
+.form-container {
+    display: flex;
+    justify-self: center;
+}
+
+.input-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.buttons {
+    margin-top: 15px;
+}

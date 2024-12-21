@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiFindAllResponse } from './interfaces/find-all-response.interface';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -18,5 +17,9 @@ export class CnesService {
     return this.http.get<ApiFindAllResponse>(
       `${this.apiUrl}?limit=${limit}&offset=${offset}`
     );
+  }
+
+  findOneByCode(code: number): Observable<Object> {
+    return this.http.get(`${this.apiUrl}/${code}`)
   }
 }
