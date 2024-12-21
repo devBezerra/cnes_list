@@ -1,0 +1,71 @@
+<h2>Lista de CNES (Cadastro Nacional de Estabelecimentos de Saúde)</h2>
+
+@if(loading) {
+<app-cnes-list-skeleton />
+} @else {
+<div class="card">
+  <p-table
+    [value]="cnes"
+    stripedRows
+    [tableStyle]="{
+      'width': '90%',
+      'justify-self': 'center'
+    }"
+  >
+    <ng-template #header>
+      <tr>
+        <th *ngFor="let col of cols">
+          {{ col.header }}
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="codigo_cnes"
+            placeholder="Buscar por código"
+            ariaLabel="Filter code"
+          ></p-columnFilter>
+        </th>
+        <th></th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="nome_fantasia"
+            placeholder="Buscar por nome"
+            ariaLabel="Filter Name"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="numero_cnpj"
+            placeholder="Buscar por CNPJ"
+            ariaLabel="Filter CNPJ"
+          ></p-columnFilter>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-establishment>
+      <tr (click)="openEstablishmentDetails(establishment.codigo_cnes)" class="establisment-item">
+        <td>{{ establishment.codigo_cnes }}</td>
+        <td>{{ establishment.nome_razao_social }}</td>
+        <td>{{ establishment.nome_fantasia }}</td>
+        <td>{{ establishment.numero_cnpj }}</td>
+        <td>{{ establishment.numero_telefone_estabelecimento }}</td>
+        <td>{{ establishment.endereco_email_estabelecimento }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div class="card flex justify-content-center">
+    <p-paginator
+      (onPageChange)="onPageChange($event)"
+      [first]="first"
+      [totalRecords]="total"
+      [rows]="rows"
+      [showPageLinks]="false"
+      [showJumpToPageDropdown]="false"
+    />
+  </div>
+</div>
+}
