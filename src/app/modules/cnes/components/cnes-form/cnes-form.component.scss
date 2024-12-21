@@ -11,5 +11,8 @@
 }
 
 .buttons {
-    margin-top: 15px;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 15px 0;
+    right: 10px;
 }
