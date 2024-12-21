@@ -11,6 +11,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { CnesListSkeletonComponent } from '../cnes-list-skeleton/cnes-list-skeleton.component';
 import { CnesListCols } from '../../constants/cnes-list-cols.constant';
 import { Router } from '@angular/router';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-cnes-table',
@@ -23,6 +24,7 @@ import { Router } from '@angular/router';
     SelectModule,
     CommonModule,
     CnesListSkeletonComponent,
+    Button
   ],
   templateUrl: './cnes-table.component.html',
   styleUrl: './cnes-table.component.scss',
@@ -65,5 +67,9 @@ export class CnesTableComponent implements OnInit {
 
   openEstablishmentDetails(code: number) {
     this.router.navigateByUrl(`/estabelecimento/${code}`);
+  }
+
+  openNewEstablishment() {
+    this.router.navigateByUrl(`/cadastrar`)
   }
 }

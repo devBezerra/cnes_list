@@ -7,38 +7,36 @@
       <div style="display: flex; gap: 8rem">
         <div class="input-container">
           <label for="codigo_cnes">Código CNES</label>
-          <input
-            class="input"
-            pInputText
+          <p-inputnumber
             formControlName="codigo_cnes"
             placeholder="Código CNES"
             class="flex-auto"
-            autocomplete="off"
-            [disabled]="true"
+            [useGrouping]="false"
+            maxlength="9"
           />
         </div>
         <div class="input-container">
           <label for="numero_cnpj">CNPJ</label>
-          <input
-            class="input"
-            pInputText
+          <p-inputnumber
             formControlName="numero_cnpj"
             placeholder="CNPJ"
             class="flex-auto"
             autocomplete="off"
+            [useGrouping]="false"
+            maxlength="14"
           />
         </div>
         <div class="input-container">
           <label for="codigo_estabelecimento_saude"
             >Código de Saúde do Estabelecimento</label
           >
-          <input
-            class="input"
-            pInputText
+          <p-inputnumber
             formControlName="codigo_estabelecimento_saude"
-            placeholder="Código de Saúde do Estabelecimento "
+            placeholder="Código de Saúde"
             class="flex-auto"
             autocomplete="off"
+            [useGrouping]="false"
+            maxlength="14"
           />
         </div>
       </div>
@@ -47,11 +45,11 @@
         <input
           class="input"
           pInputText
-          [disabled]="true"
           formControlName="nome_razao_social"
           placeholder="Razão Social"
           class="flex-auto"
           autocomplete="off"
+          maxlength="100"
         />
       </div>
       <div class="input-container">
@@ -63,6 +61,7 @@
           placeholder="Nome Fantasia"
           class="flex-auto"
           autocomplete="off"
+          maxlength="100"
         />
       </div>
       <div style="display: flex; gap: 2rem">
@@ -74,6 +73,7 @@
             formControlName="endereco_email_estabelecimento"
             placeholder="Email"
             class="flex-auto"
+            maxlength="50"
             autocomplete="off"
           />
         </div>
@@ -86,6 +86,7 @@
             placeholder="Telefone"
             class="flex-auto"
             autocomplete="off"
+            maxlength="13"
           />
         </div>
       </div>
@@ -98,25 +99,64 @@
           placeholder="Turno de atendimento"
           class="flex-auto"
           autocomplete="off"
+          maxlength="50"
         />
       </div>
-      <div class="input-container">
-        <label for="endereco_estabelecimento">Endereço</label>
-        <input
-          class="input"
-          pInputText
-          formControlName="endereco_estabelecimento"
-          placeholder="Endereço"
-          class="flex-auto"
-          autocomplete="off"
-        />
+      <div style="display: flex; gap: 2rem">
+        <div class="input-container">
+          <label for="codigo_cep_estabelecimento">CEP</label>
+          <input
+            class="input"
+            pInputText
+            formControlName="codigo_cep_estabelecimento"
+            placeholder="CEP"
+            class="flex-auto"
+            autocomplete="off"
+            maxlength="8"
+            (input)="checkLength()"
+          />
+        </div>
+        <div class="input-container" style="width: 100%">
+          <label for="endereco_estabelecimento">Endereço</label>
+          <input
+            class="input"
+            pInputText
+            formControlName="endereco_estabelecimento"
+            placeholder="Endereço"
+            class="flex-auto"
+            autocomplete="off"
+          />
+        </div>
       </div>
-
+      <div style="display: flex; gap: 2rem">
+        <div class="input-container">
+          <label for="numero_estabelecimento">Numero</label>
+          <input
+            class="input"
+            pInputText
+            formControlName="numero_estabelecimento"
+            placeholder="Numero"
+            class="flex-auto"
+            autocomplete="off"
+          />
+        </div>
+        <div class="input-container" style="width: 100%">
+          <label for="bairro_estabelecimento">Bairro</label>
+          <input
+            class="input"
+            pInputText
+            formControlName="bairro_estabelecimento"
+            placeholder="Bairro"
+            class="flex-auto"
+            autocomplete="off"
+          />
+        </div>
+      </div>
       <div class="buttons">
         <p-button
           class="button"
           label="Voltar"
-          severity="secondary"
+          severity="info"
           (onClick)="back()"
         />
 
@@ -125,11 +165,13 @@
         }
       </div>
     </form>
+    @if(!!this.code) {
     <app-cnes-location
       [name]="establishment?.nome_fantasia!"
       [latitude]="establishment?.latitude_estabelecimento_decimo_grau!"
       [longitude]="establishment?.longitude_estabelecimento_decimo_grau!"
     />
+    }
   </p-card>
 </div>
 }

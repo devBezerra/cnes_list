@@ -13,6 +13,13 @@
 .buttons {
     display: flex;
     flex-direction: row-reverse;
+    gap: 1rem;
     margin: 15px 0;
     right: 10px;
+}
+
+.search-button {
+    position: absolute;
+    margin-top: 28px;
+    margin-left: 185px;
 }

@@ -9,6 +9,10 @@ const routes: Routes = [
     component: CnesTableComponent,
   },
   {
+    path: 'cadastrar',
+    component: CnesFormComponent,
+  },
+  {
     path: 'estabelecimento/:code',
     component: CnesFormComponent,
   },
