@@ -8,8 +8,8 @@ import { MessageService } from 'primeng/api';
   providedIn: 'root',
 })
 export class CnesService {
-  private apiUrl = 'https://apidadosabertos.saude.gov.br/cnes/estabelecimentos';
-  private cepApiUrl = 'https://viacep.com.br/ws'
+  private readonly apiUrl = 'https://apidadosabertos.saude.gov.br/cnes/estabelecimentos';
+  private readonly cepApiUrl = 'https://viacep.com.br/ws'
 
   constructor(private http: HttpClient, private messageService: MessageService) {}
 
