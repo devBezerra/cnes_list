@@ -161,7 +161,7 @@
         />
 
         @if(!this.code) {
-        <p-button label="Enviar" (onClick)="onSubmit()" />
+        <p-button label="Enviar" (onClick)="onSubmit()" [disabled]="this.form.invalid"/>
         }
       </div>
     </form>

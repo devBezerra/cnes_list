@@ -6,14 +6,11 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CnesFormSkeletonComponent } from '../cnes-form-skeleton/cnes-form-skeleton.component';
 import { CnesLocationComponent } from '../cnes-location/cnes-location.component';
 import { InputNumber } from 'primeng/inputnumber';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-cnes-form',
@@ -25,7 +22,7 @@ import { InputNumber } from 'primeng/inputnumber';
     CardModule,
     CnesFormSkeletonComponent,
     CnesLocationComponent,
-    InputNumber
+    InputNumber,
   ],
   templateUrl: './cnes-form.component.html',
   styleUrl: './cnes-form.component.scss',
@@ -54,7 +51,8 @@ export class CnesFormComponent implements OnInit {
   constructor(
     public router: Router,
     public activatedRoute: ActivatedRoute,
-    private readonly service: CnesService
+    private readonly service: CnesService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -73,11 +71,14 @@ export class CnesFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    this.service.create(this.form.value).subscribe(() => {
+    });
+  }
 
   checkLength() {
-    if(this.form.get('codigo_cep_estabelecimento')?.value.length === 8) {
-      this.searchCep()
+    if (this.form.get('codigo_cep_estabelecimento')?.value.length === 8) {
+      this.searchCep();
     }
   }
 
